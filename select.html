@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+    
+    <label for="cars">Choose a car:</label>
+    <select id="cars" onchange="userCar(this)">
+        <option value="x">válassz a listából...</option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+    </select>
+<hr>
+
+<label for="cars">Choose a car:</label>
+<select id="cars2" onchange="userCar2()">
+    <option value="x">válassz a listából...</option>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option>Audi</option>
+</select>
+<hr>
+
+<select id="lang" onchange="selLang(this)">
+    <option value="0">válaszd ki a nyelvet...</option>
+</select>
+    <div class="msg"></div>
+</div>
+
+<script src="data.js"></script>
+
+    <script>
+        function userCar(domObj) {
+            console.log(domObj.value);
+        }   
+
+        function userCar2() {
+            let selectedCar=document.getElementById('cars2').value
+            console.log(selectedCar);
+        }
+        console.log(languages); 
+        //első látogatás:
+        languages.forEach(obj => {
+            document.getElementById('lang').innerHTML+=`
+            <option value=${obj.id}>${obj.name}</option>
+            `
+        });
+        function selLang(domObj){
+            document.querySelector('.msg').innerHTML=``
+            let langId=domObj.value
+            if(langId==0) return
+            let selectedObj=languages.find(obj=>obj.id==langId)//egy elemet ad vissza
+            console.log(selectedObj);
+            document.querySelector('.msg').innerHTML=`Az általad kiválasztott nyelv: ${selectedObj.name}`
+        }
+    </script>
+</body>
+</html>
